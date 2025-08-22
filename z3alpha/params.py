@@ -45,8 +45,21 @@ BASIC_PARAMS = {
     38: {
         "lia2pb_max_bits": [16, 32, 64, 128],
     },
-}
 
+    # "qe"
+    50: {
+      "eliminate_variables_as_block": ["true", "false"],
+      "qe_nonlinear": ["true", "false"],
+    },
+    # "nnf"
+    52: {
+      "sk_hack": ["true", "false"],
+    },
+    # "snf"
+    53: {
+      "sk_hack": ["true", "false"],
+    },
+}
 
 # for now, MCTS_run just has one unchanged Logic setting; include all relevant (even after conversion) parameters for each logic
 def create_params_dict(logic):
@@ -107,6 +120,19 @@ def create_params_dict(logic):
         params[21]["push_ite_bv"] = ["true", "false"]
     elif logic == "QF_S":
         pass
+    elif logic == "UF":
+        # "simplify"
+        params[20]["som"] = ["true", "false"]
+        params[20]["flat"] = ["true", "false"]
+        params[20]["hoist_mul"] = ["true", "false"]
+        params[20]["push_ite_bv"] = ["true", "false"]
+        # "propagate-values"
+        params[21] = {}
+        params[21]["push_ite_bv"] = ["true", "false"]
+        # "ctx-simplify"
+        params[22] = {}
+        params[22]["propagate_eq"] = ["true", "false"]
+        params[22]["max_depth"] = [2**x for x in range(12)]
     else:
         raise NotImplementedError(f"Logic {logic} not implemented")
     return params

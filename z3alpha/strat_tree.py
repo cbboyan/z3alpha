@@ -260,6 +260,12 @@ class PreprocessTactic(ASTNode):
             41: "ext_strSimplify",
             42: "ext_strToRegex",
             43: "ext_strToWE",
+            # 50+ are for UF [YAN]
+            50: "qe",
+            51: "qe-light",
+            52: "nnf",
+            53: "snf",
+            54: "aig",
         }
 
     def __str__(self):
@@ -286,6 +292,8 @@ class PreprocessTactic(ASTNode):
             return actions
         elif self.logic == "QF_S":
             return actions + [40, 41, 42, 43]
+        elif self.logic == "UF":
+            return actions + [i for i in range(50, 54+1)]
         else:
             raise Exception("unexpected smt logic")
 
@@ -339,6 +347,8 @@ class SolverTactic(ASTNode):
             return actions + [12]
         elif self.logic == "QF_S":
             return actions + [18, 19]
+        elif self.logic == "UF":
+            return actions + [12]
         else:
             raise Exception("unexpected smt logic")
 

@@ -60,7 +60,8 @@ class MCTSNode:
     # the argument action is only for log
     def _ucb(self, action_pair, action):
         visitCount, qScore = action_pair
-        exploreScore = self.c_ucb * math.sqrt(
+        #print(f"YAN: {self.c_ucb} {self.visitCount}") # FIXME
+        exploreScore = (self.c_ucb or 0.2)* math.sqrt(
             math.log(self.visitCount + 1)  # check ucb 1
             / (visitCount + 0.001)
         )

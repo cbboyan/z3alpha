@@ -36,6 +36,12 @@ PREPROCESS_TACTICS = [
     "ext_strSimplify",
     "ext_strToRegex",
     "ext_strToWE",
+    # [YAN]
+    "qe",
+    "qe-light",
+    "nnf",
+    "snf",
+    "aig",    
 ]
 TACTIC_LST = SOLVER_TACTICS + PREPROCESS_TACTICS
 
@@ -62,6 +68,13 @@ PARAM_LST = [
     "push_ite_arith",
     "hoist_ite",
     "arith_lhs",
+    # [YAN]
+    "sk_hack",
+    "mode",
+    "eliminate_variables_as_block",
+    "qe_nonlinear",
+    "propagate_eq",
+    "max_depth",
 ]
 PRED_PROBES = [">", "is-qfbv-eq"]
 NUM_PROBES = ["size", "num-consts"]
